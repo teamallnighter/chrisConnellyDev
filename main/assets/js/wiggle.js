@@ -6,7 +6,7 @@ function scroll1() {
         console.log('Added Wiggle');
         setTimeout(function () {
             scrollMe.classList.remove("animate__wobble");
-            console.log('Removed Wobble');
+            console.log('Removed Wiggle');
         }, 5000);
     }, 5000);
 }
