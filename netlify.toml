@@ -5,18 +5,55 @@
   functions = "netlify/functions"
   publish = "/"
 
-  ## Uncomment to use this redirect for Single Page Applications like create-react-app.
-  ## Not needed for static site generators.
-  #[[redirects]]
-  #  from = "/*"
-  #  to = "/index.html"
-  #  status = 200
 
-  ## (optional) Settings for Netlify Dev
-  ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
-  #[dev]
-  #  command = "yarn start" # Command to start your dev server
-  #  port = 3000 # Port that the dev server will be listening on
-  #  publish = "dist" # Folder with the static content for _redirect file
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
 
-  ## more info on configuring this file: https://www.netlify.com/docs/netlify-toml-reference/
+  # optional, fails build when a category is below a threshold
+  [plugins.inputs.thresholds]
+    performance = 0.7
+    accessibility = 0.7
+    best-practices = 0.7
+    seo = 0.7
+    pwa = 0.0
+
+  # optional, deploy the lighthouse report to a path under your site
+  [plugins.inputs]
+    output_path = "reports/lighthouse.html"
+
+    [[plugins]]
+  package = "netlify-plugin-minify-html"
+
+  # Specify which deploy contexts we'll minify HTML in.
+  # Supports any Deploy Contexts available in Netlify.
+  # https://docs.netlify.com/site-deploys/overview/#deploy-contexts
+  [plugins.inputs]
+    contexts = [
+      'production',
+      'branch-deploy',
+      'deploy-preview'
+    ]
+
+  # Optionally, override the default options for the minification
+  # https://github.com/kangax/html-minifier#options-quick-reference
+  [plugins.inputs.minifierOptions]
+    removeComments = false
+    collapseInlineTagWhitespace = false
+
+    [[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+
+	[plugins.inputs]
+
+	# The base url of your site (optional, default = main URL set in Netlify)
+	baseUrl = "https://chrisconnelly.dev"
+
+	# Path to the sitemap URL (optional, default = /sitemap.xml)
+	sitemapPath = "/sitemap.xml"
+
+	# Enabled providers to submit sitemap to (optional, default = 'google', 'bing', 'yandex'). Possible providers are currently only 'google', 'bing', 'yandex'.
+	providers = [
+		"google",
+		"bing",
+		"yandex"
+	]
