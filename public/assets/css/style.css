@@ -222,7 +222,7 @@
 }
 
 html, body, div, span, object, iframe,
-h1, h2, h3, h4, p,
+h1, h2, h3, h4, p, blockquote,
 a, address, big, code, img, q, s,
 small, strong, sub, var,
 b, u, i, ol, ul, li,
@@ -254,7 +254,7 @@ ol, ul {
   list-style: none;
 }
 
- q {
+blockquote, q {
   quotes: none;
 }
 
@@ -410,10 +410,10 @@ u {
 .text-component h2, .text-component h3, .text-component h4 {
   margin-top: calc(var(--space-unit) * 0.9375 * var(--text-space-y-multiplier, 1));
 }
-.text-component p, .text-component ul li, .text-component ol li {
+.text-component p, .text-component blockquote, .text-component ul li, .text-component ol li {
   line-height: calc(var(--body-line-height) * var(--line-height-multiplier, 1));
 }
-.text-component ul, .text-component ol, .text-component p {
+.text-component ul, .text-component ol, .text-component p, .text-component blockquote {
   margin-bottom: calc(var(--space-unit) * 0.9375 * var(--text-space-y-multiplier, 1));
 }
 .text-component ul, .text-component ol {
@@ -652,6 +652,10 @@ html:not(.js) .no-js\:is-hidden {
   display: none;
 }
 
+.margin-top-xxxxs {
+  margin-top: var(--space-xxxxs);
+}
+
 .margin-top-xxxs {
   margin-top: var(--space-xxxs);
 }
@@ -826,6 +830,14 @@ html:not(.js) .no-js\:is-hidden {
   font-size: var(--text-xxxl, 2.5rem);
 }
 
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.letter-spacing-md {
+  letter-spacing: 0.05em;
+}
+
 .text-center {
   text-align: center;
 }
@@ -896,12 +908,20 @@ html:not(.js) .no-js\:is-hidden {
   width: var(--size-lg, 3rem);
 }
 
+.width-xxl {
+  width: var(--size-xxl, 6rem);
+}
+
 .width-25\% {
   width: 25%;
 }
 
 .width-100\% {
   width: 100%;
+}
+
+.height-xxl {
+  height: var(--size-xxl, 6rem);
 }
 
 .height-100\% {
@@ -1077,8 +1097,20 @@ html:not(.js) .no-js\:is-hidden {
   --border-o: 1;
 }
 
+.border {
+  border: var(--border-width, 1px) var(--border-style, solid) hsla(var(--color-contrast-lower-h), var(--color-contrast-lower-s), var(--color-contrast-lower-l), var(--border-o, 1));
+}
+
 .border-top {
   border-top: var(--border-width, 1px) var(--border-style, solid) hsla(var(--color-contrast-lower-h), var(--color-contrast-lower-s), var(--color-contrast-lower-l), var(--border-o, 1));
+}
+
+.border-2 {
+  --border-width: 2px;
+}
+
+.border-bg {
+  border-color: hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), var(--border-o, 1));
 }
 
 .radius-md {
@@ -1087,6 +1119,10 @@ html:not(.js) .no-js\:is-hidden {
 
 .radius-lg {
   border-radius: var(--radius-lg);
+}
+
+.radius-50\% {
+  border-radius: 50%;
 }
 
 .bg, [class^=bg-], [class*=" bg-"] {
@@ -1463,6 +1499,11 @@ mark {
 .text-component > * {
   --text-unit: 1em;
   --space-unit: 1em;
+}
+.text-component blockquote {
+  padding-left: 1em;
+  border-left: 4px solid var(--color-contrast-lower);
+  font-style: italic;
 }
 .text-component figcaption {
   font-size: var(--text-sm);
@@ -4573,6 +4614,9 @@ Usage: codyhouse.co/license
 .js .reveal-fx::before {
   display: none;
   content: "reveal-fx";
+}
+.js .reveal-fx--scale {
+  transform: scale(0.8);
 }
 .js [class*=reveal-fx--translate], .js [class*=reveal-fx--scale] {
   will-change: opacity, transform;
