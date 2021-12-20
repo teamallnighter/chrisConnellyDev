@@ -231,7 +231,7 @@ table, tbody, thead, tr, th, td,
 article, aside, details, embed,
 figure, figcaption, footer, header,
 menu, nav, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, hr {
   margin: 0;
   padding: 0;
   border: 0;
@@ -436,6 +436,12 @@ u {
 .text-component figcaption {
   text-align: center;
   margin-top: calc(var(--space-unit) * 0.5);
+}
+.text-component hr {
+  margin-top: calc(var(--space-unit) * 1.875 * var(--text-space-y-multiplier, 1));
+  margin-bottom: calc(var(--space-unit) * 1.875 * var(--text-space-y-multiplier, 1));
+  margin-left: auto;
+  margin-right: auto;
 }
 .text-component > *:first-child {
   margin-top: 0;
@@ -1504,6 +1510,10 @@ mark {
   padding-left: 1em;
   border-left: 4px solid var(--color-contrast-lower);
   font-style: italic;
+}
+.text-component hr {
+  background: var(--color-contrast-lower);
+  height: 1px;
 }
 .text-component figcaption {
   font-size: var(--text-sm);
@@ -2575,6 +2585,22 @@ Usage: codyhouse.co/license
 }
 
 /* --icon */
+
+/* -------------------------------- 
+
+File#: _1_custom-cursor
+Title: Custom Cursor
+Descr: A JavaScript plugin to create animated custom cursors
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-custom-cursor],
+.js [data-custom-cursor] * {
+    cursor: none;
+  }
+}
 
 /* -------------------------------- 
 
@@ -6552,6 +6578,67 @@ Usage: codyhouse.co/license
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
+
+/* -------------------------------- 
+
+File#: _3_looping-slideshow
+Title: Looping Slideshow
+Descr: Slideshow automatically looping among items with a progress indicator for each item
+Usage: codyhouse.co/license
+
+-------------------------------- */
+/* optional -> overwrite slideshow height at different breakpoints */
+
+/* slideshow navigation - created in JS */
+.loop-slideshow__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.loop-slideshow__nav-item {
+  margin: var(--space-sm) calc(var(--space-sm)/2) 0;
+  --loop-slideshow-filling: 0;
+  /* used in JS to create the filling effect */
+}
+.loop-slideshow__nav-item button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 4px;
+  width: 60px;
+  border-radius: 50em;
+  background-color: var(--color-contrast-lower);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.loop-slideshow__nav-item button::before {
+  /* filling effect */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(var(--loop-slideshow-filling));
+  transform-origin: left center;
+  background-color: var(--color-primary);
+}
+.loop-slideshow__nav-item button:hover {
+  background-color: hsla(var(--color-contrast-lower-h), var(--color-contrast-lower-s), var(--color-contrast-lower-l), 0.7);
+}
+@media (min-width: 64rem) {
+  .loop-slideshow__nav-item button {
+    height: 5px;
+    width: 90px;
+  }
+}
+
+/* slideshow custom cursor */
+
+/* pause/play button */
 
 /* -------------------------------- 
 

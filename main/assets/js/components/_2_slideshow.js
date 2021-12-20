@@ -71,14 +71,14 @@
 				var navigation = document.createElement('ol'),
 					navChildren = '';
 
-				var navClasses = 'slideshow__navigation js-slideshow__navigation';
+				var navClasses = slideshow.options.navigationClass+' js-slideshow__navigation';
 				if(slideshow.items.length <= 1) {
 					navClasses = navClasses + ' is-hidden';
-				} 
+				}
 				
 				navigation.setAttribute('class', navClasses);
 				for(var i = 0; i < slideshow.items.length; i++) {
-					var className = (i == slideshow.selectedSlide) ? 'class="slideshow__nav-item slideshow__nav-item--selected js-slideshow__nav-item"' :  'class="slideshow__nav-item js-slideshow__nav-item"',
+					var className = (i == slideshow.selectedSlide) ? 'class="'+slideshow.options.navigationItemClass+' '+slideshow.options.navigationItemClass+'--selected js-slideshow__nav-item"' :  'class="'+slideshow.options.navigationItemClass+' js-slideshow__nav-item"',
 						navCurrentLabel = (i == slideshow.selectedSlide) ? '<span class="sr-only js-slideshow__nav-current-label">Current Item</span>' : '';
 					navChildren = navChildren + '<li '+className+'><button class="reset"><span class="sr-only">'+ (i+1) + '</span>'+navCurrentLabel+'</button></li>';
 				}
@@ -141,15 +141,16 @@
 					slideshow.startAutoplay();
 				});
 			}
-			
-			slideshow.element.addEventListener('focusin', function(event){
-				slideshow.pauseAutoplay();
-				slideshow.autoplayPaused = true;
-			});
-			slideshow.element.addEventListener('focusout', function(event){
-				slideshow.autoplayPaused = false;
-				slideshow.startAutoplay();
-			});
+			if(!slideshow.options.autoplayOnFocus) {
+				slideshow.element.addEventListener('focusin', function(event){
+					slideshow.pauseAutoplay();
+					slideshow.autoplayPaused = true;
+				});
+				slideshow.element.addEventListener('focusout', function(event){
+					slideshow.autoplayPaused = false;
+					slideshow.startAutoplay();
+				});
+			}
 		}
 		// detect if external buttons control the slideshow
 		var slideshowId = slideshow.element.getAttribute('id');
@@ -321,7 +322,10 @@
     navigation : true,
     autoplay : false,
 		autoplayOnHover: false,
+		autoplayOnFocus: false,
     autoplayInterval: 5000,
+		navigationItemClass: 'slideshow__nav-item',
+    navigationClass: 'slideshow__navigation',
     swipe: false
   };
 
@@ -335,9 +339,12 @@
 				var navigation = (slideshows[i].getAttribute('data-navigation') && slideshows[i].getAttribute('data-navigation') == 'off') ? false : true,
 					autoplay = (slideshows[i].getAttribute('data-autoplay') && slideshows[i].getAttribute('data-autoplay') == 'on') ? true : false,
 					autoplayOnHover = (slideshows[i].getAttribute('data-autoplay-hover') && slideshows[i].getAttribute('data-autoplay-hover') == 'on') ? true : false,
+					autoplayOnFocus = (slideshows[i].getAttribute('data-autoplay-focus') && slideshows[i].getAttribute('data-autoplay-focus') == 'on') ? true : false,
 					autoplayInterval = (slideshows[i].getAttribute('data-autoplay-interval')) ? slideshows[i].getAttribute('data-autoplay-interval') : 5000,
-					swipe = (slideshows[i].getAttribute('data-swipe') && slideshows[i].getAttribute('data-swipe') == 'on') ? true : false;
-				new Slideshow({element: slideshows[i], navigation: navigation, autoplay : autoplay, autoplayOnHover: autoplayOnHover, autoplayInterval : autoplayInterval, swipe : swipe});
+					swipe = (slideshows[i].getAttribute('data-swipe') && slideshows[i].getAttribute('data-swipe') == 'on') ? true : false,
+					navigationItemClass = slideshows[i].getAttribute('data-navigation-item-class') ? slideshows[i].getAttribute('data-navigation-item-class') : 'slideshow__nav-item',
+          navigationClass = slideshows[i].getAttribute('data-navigation-class') ? slideshows[i].getAttribute('data-navigation-class') : 'slideshow__navigation';
+				new Slideshow({element: slideshows[i], navigation: navigation, autoplay : autoplay, autoplayOnHover: autoplayOnHover, autoplayOnFocus: autoplayOnFocus, autoplayInterval : autoplayInterval, swipe : swipe, navigationItemClass: navigationItemClass, navigationClass: navigationClass});
 			})(i);
 		}
 	}

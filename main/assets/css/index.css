@@ -1,0 +1,147 @@
+.lf-hero--home {
+  position: relative;
+  background: #212121;
+  height: 100vh;
+}
+.lf-hero--home .lf-hero-intro {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 38px;
+}
+@media screen and (min-width: 960px) {
+  .lf-hero--home {
+    min-height: 900px;
+  }
+}
+
+.lf-hero--landing {
+  margin-top: -95px;
+  padding-top: 95px;
+  position: relative;
+  background: #212121;
+}
+.lf-hero--landing .lf-hero-intro {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 38px;
+}
+@media screen and (min-width: 960px) {
+  .lf-hero--landing {
+    margin-top: -179px;
+    padding-top: 300px;
+  }
+}
+
+.lf-hero-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+.uk-light .lf-hero-navlist {
+  margin-top: 2px;
+}
+.uk-light .lf-hero-navlist > * {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.uk-light .lf-hero-navlist > * > a {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.uk-light .lf-hero-navlist > *.uk-active > a {
+  color: #FFCE2F;
+}
+
+.lf-hero-navcontainer {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 25px 0;
+}
+
+.lf-hero-cover {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.lf-hero-cover:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 17, 17, 0.5);
+}
+
+.lf-hero-slick {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.lf-hero-slick:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 17, 17, 0.5);
+}
+.lf-hero-slick.slick-dotted.slick-slider {
+  margin: 0;
+}
+.lf-hero-slick .slick-list,
+.lf-hero-slick .slick-slider,
+.lf-hero-slick .slick-track {
+  height: 100%;
+}
+.lf-hero-slick .slick-slide,
+.lf-hero-slick .slick-slide > div {
+  display: flex !important;
+  width: 100%;
+}
+
+.lf-hero-slide img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.lf-hero-content {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.lf-hero-image {
+  margin-top: -30px;
+  height: 200px;
+}
+@media screen and (min-width: 960px) {
+  .lf-hero-image {
+    margin-top: -50px;
+    height: 350px;
+  }
+}
+
+.slick-slider .slick-prev,
+.slick-slider .slick-next,
+.slick-slider .slick-dots {
+  display: none !important;
+}

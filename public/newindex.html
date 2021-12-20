@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Adrian Gyuricska</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css'>
+    <link rel="stylesheet" href="assets/css/index.css">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="lf-hero lf-hero--home uk-section uk-section-large uk-cover-container uk-flex uk-flex-middle uk-light"
+        uk-scrollspy="target: > div; cls:uk-animation-fade; delay: 500">
+        <div class="lf-hero-content uk-container">
+            <div class="uk-grid" uk-grid uk-scrollspy="target: > div; cls:uk-animation-fade; delay: 500">
+                <div class="uk-width-2-3@s uk-width-1-2@l uk-text-center uk-text-left@s">
+                    <h1 class="lf-hero-heading uk-heading-primary">chrisConnellyDotDev</h1>
+                    <p class="lf-hero-intro uk-text-lead">Lets Save Your Business Money</p>
+                    <div class="uk-margin-large-top">
+                        <a class="lf-button lf-button-primary uk-button uk-button-large uk-button-primary"
+                            href="/applicants/signup/">Get A Quote</a>
+                        <a class="lf-button lf-button-text uk-button uk-button-large uk-button-text uk-margin-large-left uk-visible@m"
+                            href="/how-it-works/">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lf-hero-nav uk-visible@m">
+            <div class="uk-container">
+                <div class="lf-hero-navcontainer">
+                    <div class="uk-grid uk-flex">
+                        <div class="uk-width-1-1 uk-width-auto">
+                            <h3 class="lf-heading-light uk-margin-remove uk-margin-remove-adjacent">Services</h3>
+                            <a href="/job-industries/" class="uk-button uk-button-text">View All</a>
+                        </div>
+
+                        <div class="uk-width-1-1 uk-width-expand">
+                            <ul class="lf-hero-navlist uk-subnav js-slidenav">
+                                <li class="uk-active"><a href="#">Custom Development</a></li>
+                                <li><a href="#">Packages</a></li>
+                                <li><a href="#">E Commerce</a></li>
+                                <li><a href="#">Turn Key</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lf-hero-slick js-slick">
+            <div class="lf-hero-slide uk-overflow-hidden js-slide">
+                <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="Slide 1" class="uk-animation-kenburns">
+            </div>
+            <div class="lf-hero-slide uk-overflow-hidden js-slide">
+                <img src="https://images.unsplash.com/photo-1595246007497-15e0ed4b8d96?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="Slide 2">
+            </div>
+            <div class="lf-hero-slide uk-overflow-hidden js-slide">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    alt="Slide 3">
+            </div>
+            <div class="lf-hero-slide uk-overflow-hidden js-slide">
+                <img src="https://images.unsplash.com/photo-1531379410502-63bfe8cdaf6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                    alt="Slide 4">
+            </div>
+            <div class="lf-hero-slide uk-overflow-hidden js-slide">
+                <img src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                    alt="Slide 5">
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js'></script>
+    <script>$('.js-slick').on('afterChange', function (event, slick, currentSlide) {
+            $('.js-slide:not(.slick-active) img').removeClass('uk-animation-kenburns');
+            $('.js-slide:eq(' + currentSlide + ') img').addClass('uk-animation-kenburns');
+            $('.js-slidenav li').removeClass('uk-active').eq(currentSlide).addClass('uk-active');
+        }).on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+
+        }).slick({
+            dots: false,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000
+        });
+
+        $('.js-slidenav a').on('click', function (e) {
+            var slide = $(this).parents('li').index();
+            // $(this).parents('li').addClass('uk-active').isblings().removeClass('uk-active');
+            $('.js-slick').slick('slickGoTo', slide);
+            e.preventDefault();
+        });</script>
+
+</body>
+
+</html>
