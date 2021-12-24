@@ -624,6 +624,10 @@ html:not(.js) .no-js\:is-hidden {
   align-items: center;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 [class^=aspect-ratio], [class*=" aspect-ratio"] {
   --aspect-ratio: calc(16/9);
   position: relative;
@@ -698,6 +702,10 @@ html:not(.js) .no-js\:is-hidden {
   margin-top: auto;
 }
 
+.margin-bottom-xxxs {
+  margin-bottom: var(--space-xxxs);
+}
+
 .margin-bottom-xxs {
   margin-bottom: var(--space-xxs);
 }
@@ -741,6 +749,10 @@ html:not(.js) .no-js\:is-hidden {
 .margin-y-xxl {
   margin-top: var(--space-xxl);
   margin-bottom: var(--space-xxl);
+}
+
+.padding-xs {
+  padding: var(--space-xs);
 }
 
 .padding-sm {
@@ -952,6 +964,10 @@ html:not(.js) .no-js\:is-hidden {
   --max-width-xxxxl: 150rem;
 }
 
+.max-width-xxxs {
+  max-width: var(--max-width-xxxs);
+}
+
 .max-width-xs {
   max-width: var(--max-width-xs);
 }
@@ -1087,6 +1103,10 @@ html:not(.js) .no-js\:is-hidden {
   z-index: 3;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -1129,6 +1149,10 @@ html:not(.js) .no-js\:is-hidden {
 
 .radius-50\% {
   border-radius: 50%;
+}
+
+.radius-full {
+  border-radius: 50em;
 }
 
 .bg, [class^=bg-], [class*=" bg-"] {
@@ -1240,6 +1264,10 @@ html:not(.js) .no-js\:is-hidden {
   }
 }
 @media (min-width: 64rem) {
+
+  .justify-end\@md {
+    justify-content: flex-end;
+  }
 
   .items-center\@md {
     align-items: center;
@@ -4101,6 +4129,29 @@ Usage: codyhouse.co/license
   .modal--animate-fade.modal--is-visible {
     transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s;
   }
+
+  
+.modal--animate-translate-up {
+    --modal-transition-duration: .2s;
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s var(--modal-transition-duration);
+  }
+  
+.modal--animate-translate-up .modal__content {
+    will-change: transform;
+    transition: transform var(--modal-transition-duration) var(--ease-out);
+  }
+  
+.modal--animate-translate-up.modal--is-visible {
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s;
+  }
+  
+.modal--animate-translate-up.modal--is-visible .modal__content {
+    transform: scale(1);
+  }
+
+  .modal--animate-translate-up .modal__content {
+    transform: translateY(40px);
+  }
 }
 .modal--is-loading .modal__content {
   visibility: hidden;
@@ -5259,6 +5310,35 @@ Usage: codyhouse.co/license
     transform: translateY(0px);
   }
 }
+/* -------------------------------- 
+
+File#: _2_alert-message
+Title: Alert Message
+Descr: An alert message displayed in a modal window
+Usage: codyhouse.co/license
+
+-------------------------------- */
+.alert-msg {
+  --modal-transition-duration: .2s;
+}
+
+.alert-msg__close-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.9);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: var(--space-xxs) var(--space-sm);
+  color: var(--color-bg);
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: 0.2s;
+}
+.alert-msg__close-btn:hover {
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 1);
+}
+
 /* -------------------------------- 
 
 File#: _2_anim-cards
